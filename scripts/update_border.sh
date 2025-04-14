@@ -10,7 +10,7 @@ prefix_len=${#prefix}
 if (( pane_border_format_max_len <= prefix_len )); then
     pane_border_format="$prefix"
 else
-    # we cannot display the entire path - display as much as possible from the end and dot leading 3 characters.
+    # we cannot display the entire path - display as much as possible, prioritizing the end. Also, dot leading 3 characters.
     display_path_max_len=$((pane_border_format_max_len - prefix_len))
     path_len=${#pane_current_path}
     if (( path_len <= display_path_max_len )); then
