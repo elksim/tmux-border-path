@@ -26,9 +26,10 @@ Add the following to your ~/.bashrc file (this will run update_border.sh on ever
 
 ```bash
 if [[ -n "$TMUX" ]]; then
-    if [[ "$PROMPT_COMMAND" != *"$HOME/.config/tmux/plugins/tmux-border-path/scripts/update_border.sh"* ]]; then
+    UPDATE_BORDER_PATH="$HOME/.config/tmux/plugins/tmux-border-path/scripts/update_border.sh"
+    if [[ "$PROMPT_COMMAND" != *"$UPDATE_BORDER_PATH"* ]]; then
         PROMPT_COMMAND="${PROMPT_COMMAND%;}"
-        PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND;}$HOME/.config/tmux/plugins/tmux-border-path/scripts/update_border.sh"
+        PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND;}\"$UPDATE_BORDER_PATH\""
     fi
 fi
 ```
