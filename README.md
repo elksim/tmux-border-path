@@ -2,6 +2,8 @@
 
 Display the current path in the panes border.
 
+[Demo](https://github.com/user-attachments/assets/4a098e10-8f7b-47ae-aeef-325b77cee7d7)
+
 ## installation
 
 1
