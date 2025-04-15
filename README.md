@@ -4,13 +4,23 @@ Display the current path in the panes border.
 
 ## installation
 
-to install using tpm: add the following to the list of tpm plugins in your tmux.conf:
+1
+
+manual: copy update_border.sh and update_borders.sh then add to your tmux.conf:
+
+```bash
+tmux set-option -ag window-layout-changed "run-shell path/to/update_borders.sh"
+```
+
+with tpm: add the following to the list of tpm plugins in your tmux.conf  
 
 ```bash
 set -g @plugin 'elksim/tmux-border-path
 ```
 
-and also add the following to your ~/.bashrc file (warning: this will run update_border.sh on every command entered so that if we change directory in any way we update the pane-border-format. I'm not aware of a better way to do this.)
+2
+
+Add the following to your ~/.bashrc file (this will run update_border.sh on every command entered so that if we change directory in any way we update the pane-border-format. I'm not aware of a better way to do this.)
 
 ```bash
 if [[ -n "$TMUX" ]]; then
@@ -21,13 +31,14 @@ if [[ -n "$TMUX" ]]; then
 fi
 ```
 
-(if in tmux environment, if script is not in prompt command strip a trailing semicolon, add a semicolon if prompt_command is non-empty, then append our script)
+description (because bash syntax is wack): if in tmux environment, if script is not in prompt command, strip a trailing semicolon, add a semicolon if prompt_command is non-empty, then append our script.
 
 ## todos
 
 - enable customisation of what gets displayed.
 - early abort update_border and update_borders if they won't change pane-border-format.
-- try make sure this works with various settings.
+- make it work with ssh?
+- try make sure this works with various settings.. actually, best approach is probably to implement a format hook {#current_path} to use in format strings rather than overriding the entire pane-border-format string..
 
 ### to-maybe-do
 
