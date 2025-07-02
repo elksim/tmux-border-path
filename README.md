@@ -26,11 +26,11 @@ Add the following to your ~/.bashrc file (this will run update_border.sh on ever
 
 ```bash
 if [[ -n "$TMUX" ]]; then
-    UPDATE_BORDER_PATH="$HOME/.config/tmux/plugins/tmux-border-path/scripts/update_border.sh"
-    if [[ "$PROMPT_COMMAND" != *"$UPDATE_BORDER_PATH"* ]]; then
-        PROMPT_COMMAND="${PROMPT_COMMAND%;}"
-        PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND;}\"$UPDATE_BORDER_PATH\""
-    fi
+  UPDATE_BORDER_PATH="$HOME/.config/tmux/plugins/tmux-border-path/scripts/update_border.sh"
+  if [[ "$PROMPT_COMMAND" != *"$UPDATE_BORDER_PATH"* ]]; then
+    PROMPT_COMMAND="${PROMPT_COMMAND%;}"
+    PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND;}\"$UPDATE_BORDER_PATH\""
+  fi
 fi
 ```
 
@@ -41,6 +41,7 @@ description (because bash syntax is wack): if in tmux environment, if script is 
 - enable customisation of what gets displayed.
 - early abort update_border and update_borders if they won't change pane-border-format.
 - make it work with ssh?
+  - I think I'd essentially just have to disable displaying the path in ssh panes - and to do this I could, I think.. , use bash_preexec.sh to detect when we're entering a ssh session.
 - try make sure this works with various settings.. actually, best approach is probably to implement a format hook {#current_path} to use in format strings rather than overriding the entire pane-border-format string..
 
 ### to-maybe-do

@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-pane_info=$(tmux display-message -p "#{pane_index} #{pane_current_path} #{pane_width}")
-read -r pane_index pane_current_path pane_width <<< "$pane_info"
+
+mapfile -t pane_parts < <(tmux display-message -p $'#{pane_index}\n#{pane_current_path}\n#{pane_width}')
+pane_index="${pane_parts[0]}"
+pane_current_path="${pane_parts[1]}"
+pane_width="${pane_parts[2]}"
 
 ## Build pane_border_format
 pane_border_format_max_len=$((pane_width - 4))
